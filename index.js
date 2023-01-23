@@ -15,8 +15,8 @@ var APP_VERSION = "0.0"
 
 mongoose.connect(mongoURL, {
 	useUnifiedTopology: true,
-	useNewUrlParser: true,
-	useCreateIndex: true
+	useNewUrlParser: true
+//	useCreateIndex: true
   }).then(() => {
 	console.log('Connected to MongoDB');
   }).catch(err => {
