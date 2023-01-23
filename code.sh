@@ -19,7 +19,7 @@ yum install git -y
 cd /home/spec/
 git clone https://github.com/ChaitanyaChandra/app.git
 cd app/
-npm  install
+cat package.sh | bash
 cp spec.service /etc/systemd/system/
 systemctl start spec
 # node .js > node.logs 2>&1 &
