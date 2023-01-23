@@ -12,7 +12,7 @@ sed -i -e 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
 
 systemctl restart mongod
 
-curl -sL https://rpm.nodesource.com/setup_10.x | bash -
+curl -sL https://rpm.nodesource.com/setup_16.x | bash -
 yum install nodejs -y 
 
 yum install git -y 
