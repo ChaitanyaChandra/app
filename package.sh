@@ -1,2 +1,1 @@
-npm install express path body-parser mongoose bcryptjs jsonwebtoken child_process pug
-npm install
+npm install express path body-parser mongoose bcryptjs jsonwebtoken child_process pug util

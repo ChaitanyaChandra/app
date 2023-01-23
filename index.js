@@ -6,6 +6,8 @@ const User = require('./model/user')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 var child_process = require("child_process");
+var util= require('util');
+var encoder = new util.TextEncoder('utf-8')
 
 const JWT_SECRET = 'ChaitanyaChandra<Chay@outlook.in>'
 
