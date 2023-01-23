@@ -1,5 +1,5 @@
 {
-  "name": "websiteleads",
+  "name": "spec",
   "version": "1.0.0",
   "description": "Capture Leads",
   "main": "index.js",
@@ -8,18 +8,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ChaitanyaChandra/Leads.git"
+    "url": "git+https://github.com/ChaitanyaChandra/app.git"
   },
   "author": "Chaitanya Chandra",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ChaitanyaChandra/Leads/issues"
+    "url": "https://github.com/ChaitanyaChandra/app/issues"
   },
-  "homepage": "https://github.com/ChaitanyaChandra/Leads#readme",
+  "homepage": "https://github.com/ChaitanyaChandra/app#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.2",
     "express": "^4.17.3",
-    "nodemon": "^2.0.15",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.10"
   }
 }

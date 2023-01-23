@@ -10,15 +10,8 @@
 
 <div class="grid">
 
-    <form id="login" action="/spec" method="post"  class="form login">
+    <form id="reg-form" action="/spec" method="post"  class="form login">
 
-
-        <div class="form__field">
-            <label for="login__username"><svg class="icon">
-                <use xlink:href="#icon-user"></use>
-            </svg><span class="hidden">Username</span></label>
-            <input id="username" autocomplete="username" id="username" type="text" name="username" class="form__input" placeholder="Username" required>
-        </div>
 
         <div class="form__field">
             <label for="login__password"><svg class="icon">
@@ -28,44 +21,42 @@
         </div>
 
         <div class="form__field">
-            <input type="submit" value="Sign In">
+            <input type="submit" value="Change Password">
         </div>
 
     </form>
     <script>
-        const form = document.getElementById('login')
-        form.addEventListener('submit', login)
+        const form = document.getElementById('reg-form')
+        form.addEventListener('submit', registerUser)
 
-        async function login(event) {
+        async function registerUser(event) {
             event.preventDefault()
-            const username = document.getElementById('username').value
             const password = document.getElementById('password').value
 
-            const result = await fetch('/api/login', {
+            const result = await fetch('/api/change-password', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    username,
-                    password
+                    newpassword: password,
+                    token: localStorage.getItem('token')
                 })
             }).then((res) => res.json())
 
             if (result.status === 'ok') {
                 // everythign went fine
-                console.log('Got the token: ', result.data)
-                localStorage.setItem('token', result.data)
                 alert('Success')
-                document.getElementById("login").submit();
+                document.getElementById("reg-form").submit();
             } else {
                 alert(result.error)
+                window.location.href = '/';
             }
         }
     </script>
 
-    <p class="text--center">Not a member? <a href="/signup"> Signup now </a> <svg class="icon">
-        <use xlink:href="sighn up"></use>
+    <p class="text--center">don't want to change? <a href="/"> login </a> <svg class="icon">
+        <use xlink:href=" Login "></use>
     </svg></p>
 
 </div>

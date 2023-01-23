@@ -1,0 +1,13 @@
+[Unit]
+Description = spec Service
+
+[Service]
+User=spec
+ExecStart=/usr/bin/node index.js
+SyslogIdentifier=spec
+WorkingDirectory=/home/spec/app
+# StandardOutput=syslog
+# StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
