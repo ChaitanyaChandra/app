@@ -23,6 +23,7 @@
     "pug": "^3.0.2",
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.10.10"
+    "mongoose": "^5.10.10",
+    "node-gyp": "^9.3.1"
   }
 }
