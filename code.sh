@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# only works on centos8 aarch64
+
 # setup user 
 adduser spec
 
