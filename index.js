@@ -9,15 +9,19 @@ var child_process = require("child_process");
 
 const JWT_SECRET = 'ChaitanyaChandra<Chay@outlook.in>'
 
-var mongoURL = process.env.MONGO_ENDPOINT || "mongodb://127.0.0.1:27017/login-app-db";
+var mongoURL = process.env.MONGO_ENDPOINT || "mongodb://localhost:27017/login-app-db";
 
 var APP_VERSION = "0.0"
 
 mongoose.connect(mongoURL, {
-	useNewUrlParser: true,
 	useUnifiedTopology: true,
+	useNewUrlParser: true,
 	useCreateIndex: true
-})
+  }).then(() => {
+	console.log('Connected to MongoDB');
+  }).catch(err => {
+	console.log('Error connecting to MongoDB:', err);
+  });
 
 const port = 8080
 const app = express()
