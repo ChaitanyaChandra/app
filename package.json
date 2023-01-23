@@ -1,0 +1,21 @@
+{
+    "name": "spec",
+    "version": "1.0.0",
+    "description": "Capture Leads",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/ChaitanyaChandra/app.git"
+    },
+    "author": "Chaitanya Chandra",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/ChaitanyaChandra/app/issues"
+    },
+    "homepage": "https://github.com/ChaitanyaChandra/app#readme",
+    "dependencies": {
+    }
+  }
