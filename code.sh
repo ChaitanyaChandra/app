@@ -22,8 +22,20 @@ cd /home/spec/
 git clone https://github.com/ChaitanyaChandra/app.git
 cd app/
 cat package.sh | bash
-# export MONGO_ENDPOINT="mongodb+srv://<username>:<password>@cluster0.wdtudby.mongodb.net/login-app-db?retryWrites=true&w=majority"
-cp spec.service /etc/systemd/system/
+
+db_user=chaitu
+db_pass=123Chaitu
+
+echo MONGO_ENDPOINT=mongodb+srv://$db_user:$db_pass@cluster0.wdtudby.mongodb.net/login-app-db?retryWrites=true&w=majority >> files/spec.service
+cp files/spec.service /etc/systemd/system/
 systemctl start spec
+
+sudo yum install epel-release
+sudo yum install nginx -y 
+
+cp files/nginx.conf /etc/nginx/nginx.conf
+cp files/nodejs.conf /etc/nginx/conf.d/nodejs.conf
+
+systemctl restart nginx
 # node .js > node.logs 2>&1 &
 # ps -ef | grep "index.js" > run.log
