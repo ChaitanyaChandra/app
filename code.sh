@@ -33,6 +33,7 @@ systemctl start spec
 sudo yum install epel-release
 sudo yum install nginx -y 
 
+mkdir /etc/nginx/
 cp files/nginx.conf /etc/nginx/nginx.conf
 cp files/nodejs.conf /etc/nginx/conf.d/nodejs.conf
 
