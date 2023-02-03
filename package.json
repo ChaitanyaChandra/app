@@ -1,7 +1,7 @@
 {
     "name": "spec",
     "version": "1.0.0",
-    "description": "Capture Leads",
+    "description": "nodejs application with mongodb database",
     "main": "index.js",
     "scripts": {
       "start": "node index.js"
