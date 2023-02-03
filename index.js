@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const User = require('./model/user')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-var child_process = require("child_process");
+var child_process = require("child_process")
 
 const JWT_SECRET = 'ChaitanyaChandra<Chay@outlook.in>'
 
