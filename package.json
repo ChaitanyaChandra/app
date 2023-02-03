@@ -8,7 +8,7 @@
     },
     "repository": {
       "type": "git",
-      "url": "git+https://github.com/ChaitanyaChandra/app.git"
+      "url": "https://github.com/ChaitanyaChandra/app.git"
     },
     "author": "Chaitanya Chandra",
     "license": "ISC",
