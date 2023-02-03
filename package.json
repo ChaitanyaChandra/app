@@ -1,5 +1,5 @@
 {
-    "name": "spec",
+    "name": "spec application",
     "version": "1.0.0",
     "description": "nodejs application with mongodb database",
     "main": "index.js",
