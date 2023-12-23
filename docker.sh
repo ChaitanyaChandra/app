@@ -19,4 +19,4 @@ docker run -d -t -i \
   -h ServerOne \
   --name server-one chaituchowdary/app:latest
 
-docker exec -it ServerOne /bin/bash
+echo "docker exec -it server-one sh"
