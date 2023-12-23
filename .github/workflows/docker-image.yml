@@ -1,0 +1,35 @@
+name: Docker Image CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version of Docker Image'
+        required: true
+
+env:
+  IMAGE_NAME: app
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag ${{ env.IMAGE_NAME }}:${{ github.event.inputs.version }}
+
+    - name: Tag the Docker image with 'latest'
+      run: docker tag ${{ env.IMAGE_NAME }}:${{ github.event.inputs.version }} ${{ env.IMAGE_NAME }}:latest
+
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login --username "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+    - name: Push the Docker image with version tag
+      run: docker push ${{ env.IMAGE_NAME }}:${{ github.event.inputs.version }}
+
+    - name: Push the Docker image with 'latest' tag
+      run: docker push ${{ env.IMAGE_NAME }}:latest
