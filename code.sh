@@ -3,13 +3,12 @@
 # only works on centos8 aarch64
 
 # install mongodb
+# sudo yum install dnf -y
 # curl -s https://raw.githubusercontent.com/ChaitanyaChandra/DevOps/main/2.ANSIBLE/roles/mongodb/files/mongo.repo > /etc/yum.repos.d/mongodb-org-6.0.repo
-
 # dnf --disablerepo=AppStream install -y mongodb-org
-
 # sed -i -e 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
-
 # systemctl restart mongod
+
 
 # setup user 
 adduser spec

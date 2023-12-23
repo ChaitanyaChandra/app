@@ -5,19 +5,24 @@ const mongoose = require('mongoose')
 const User = require('./model/user')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-var child_process = require("child_process");
+var child_process = require("child_process")
+var mongoConnected = false;
+
 
 const JWT_SECRET = 'ChaitanyaChandra<Chay@outlook.in>'
 
 var mongoURL = process.env.MONGO_ENDPOINT || "mongodb://localhost:27017/login-app-db";
 
-var APP_VERSION = "0.0"
+var app_version = process.env.APP_VERSION || "0.0"
+
+var environment = process.env.ENV || "test"
 
 mongoose.connect(mongoURL, {
 	useUnifiedTopology: true,
 	useNewUrlParser: true
 //	useCreateIndex: true
   }).then(() => {
+	mongoConnected = true;
 	console.log('Connected to MongoDB');
   }).catch(err => {
 	console.log('Error connecting to MongoDB:', err);
@@ -33,6 +38,16 @@ app.use(bodyParser.urlencoded({
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use(express.static('views/public'))
 app.use(bodyParser.json())
+
+app.get('/health', (req, res) => {
+    var stat = {
+        app: 'OK',
+        mongo: mongoConnected,
+	version: app_version,
+	environment: environment
+    };
+    res.json(stat);
+});
 
 app.get('/spec', function(req, res) {
     res.sendFile('public/index.html', {
@@ -169,7 +184,8 @@ app.post('/spec', function(req, res) {
 		lscpu: command_data.items[2].lscpu,
 		meminfo: command_data.items[3].meminfo,
 		dev: "chaitanya chandra (chay@outlook.in)",
-		app_version: APP_VERSION
+		app_version: app_version,
+		env: environment
 	})
 })
 
