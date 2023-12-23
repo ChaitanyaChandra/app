@@ -5,7 +5,7 @@ db_user=chaitu
 db_pass=123Chaitu
 endpoint="mongodb+srv://$db_user:$db_pass@cluster0.wdtudby.mongodb.net/login-app-db retryWrites=true&w=majority"
 
-sudo docker run -d -t -i -e REDIS_NAMESPACE='staging' \ 
+sudo docker run -d -t -i \
 -e MONGO_ENDPOINT=$endpoint \
 -e ENV='dev' \
 -e APP_VERSION='1.0' \
