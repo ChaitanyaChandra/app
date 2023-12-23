@@ -13,7 +13,7 @@ docker rm -f $(docker ps -a -q)
 docker run -d -t -i \
   -e MONGO_ENDPOINT="mongodb+srv://$db_user:$db_pass@cluster0.wdtudby.mongodb.net/login-app-db?retryWrites=true&w=majority" \
   -e ENV='dev' \
-  -e APP_VERSION='3.0' \
+  -e APP_VERSION='4.0' \
   -e PORT='9000' \
   -p 8800:9000 \
   -h ServerOne \
