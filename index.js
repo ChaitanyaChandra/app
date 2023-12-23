@@ -212,5 +212,5 @@ app.use(function(req, res, next){
 })
 
 app.listen(process.env.PORT || port, () => {
-    console.log(`leads app listening at http://localhost:${port}`)
+    console.log(`leads app listening at http://localhost:${process.env.PORT || port}`)
 })
