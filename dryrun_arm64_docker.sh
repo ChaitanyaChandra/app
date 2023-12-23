@@ -1,5 +1,6 @@
-#docker build -t docker.io/chaituchowdary/app:5.0 docker.io/chaituchowdary/app:latest .
-#docker push docker.io/chaituchowdary/app:latest
+#docker push docker.io/chaituchowdary/app:arm64_latest docker.io/chaituchowdary/app:arm64_5.0
+#docker push docker.io/chaituchowdary/app:arm64_latest
+#docker push docker.io/chaituchowdary/app:arm64_5.0
 
 db_user=chaitu
 db_pass=123Chaitu
@@ -17,6 +18,6 @@ docker run -d -t -i \
   -e PORT='8800' \
   -p 9000:8800 \
   -h ServerOne \
-  --name server-one chaituchowdary/app:latest
+  --name server-one chaituchowdary/app:arm64_latest
 
 echo "docker exec -it server-one sh"

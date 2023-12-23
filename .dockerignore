@@ -5,5 +5,8 @@ dryrun_docker.sh
 LICENSE
 package.sh
 dryrun_linux.sh
-Dockerfile
+amd64_Dockerfile
+arm64_Dockerfile
 kubernetes
+dryrun_amd64_docker.sh
+dryrun_arm64_docker.sh
