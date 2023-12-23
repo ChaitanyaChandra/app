@@ -1,5 +1,5 @@
-# docker build -t docker.io/chaituchowdary/app:1.0 docker.io/chaituchowdary/app:latest .
-# docker run -itd -p 8080:3000 --name=ServerOne -h ServerOne app:latest
+#docker build -t docker.io/chaituchowdary/app:5.0 docker.io/chaituchowdary/app:latest .
+#docker push docker.io/chaituchowdary/app:latest
 
 db_user=chaitu
 db_pass=123Chaitu
