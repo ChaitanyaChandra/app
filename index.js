@@ -44,6 +44,7 @@ app.get('/health', (req, res) => {
     app: 'OK',
     mongo: mongoConnected,
     host: `${execSync("hostname").toString().trim()}`,
+    uptime: `${execSync("uptime").toString().trim()}`,
 	version: app_version,
 	environment: environment
     };
