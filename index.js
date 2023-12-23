@@ -41,12 +41,12 @@ app.use(bodyParser.json())
 
 app.get('/health', (req, res) => {
     var stat = {
-    app: 'OK',
-    mongo: mongoConnected,
+    environment: environment,
+    mongodb_connected : mongoConnected,
     host: `${execSync("hostname").toString().trim()}`,
     uptime: `${execSync("uptime").toString().trim()}`,
 	version: app_version,
-	environment: environment
+	developer: "chaitanya chandra (chay@outlook.in)"
     };
     res.json(stat);
 });
