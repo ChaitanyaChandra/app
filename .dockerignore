@@ -5,3 +5,4 @@ docker.sh
 LICENSE
 package.sh
 dryrun.sh
+Dockerfile
