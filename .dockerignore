@@ -1,8 +1,8 @@
 .gitignore
 files/
 code.sh
-docker.sh
+dryrun_docker.sh
 LICENSE
 package.sh
-dryrun.sh
+dryrun_linux.sh
 Dockerfile
