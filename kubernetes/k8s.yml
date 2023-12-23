@@ -12,19 +12,19 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: server-one-deployment
+  name: spec-deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: server-one
+      app: spec
   template:
     metadata:
       labels:
-        app: server-one
+        app: spec
     spec:
       containers:
-      - name: server-one
+      - name: spec
         image: chaituchowdary/app:arm64_latest
         env:
         - name: MONGO_USER
@@ -51,10 +51,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: server-one-service
+  name: spec-service
 spec:
   selector:
-    app: server-one
+    app: spec
   ports:
   - protocol: TCP
     port: 9000 # Exposes port 9000 externally
