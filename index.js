@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const User = require('./model/user')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-var child_process = require("child_process")
+const { execSync } = require('child_process');
 var mongoConnected = false;
 
 
@@ -41,8 +41,9 @@ app.use(bodyParser.json())
 
 app.get('/health', (req, res) => {
     var stat = {
-        app: 'OK',
-        mongo: mongoConnected,
+    app: 'OK',
+    mongo: mongoConnected,
+    host: `${execSync("hostname").toString().trim()}`
 	version: app_version,
 	environment: environment
     };
@@ -168,13 +169,13 @@ app.post('/spec', function(req, res) {
 	console.log(`user: ${username} accessed spec.`)
 	const command_data = {};
 	command_data.items = [];
-	let cmd_hostname = child_process.execSync("hostname");
+	let cmd_hostname = execSync("hostname");
 	command_data.items[0] = {hostname : (cmd_hostname.toString())}
-	let cmd_uptime = child_process.execSync("uptime");
+	let cmd_uptime = execSync("uptime");
 	command_data.items[1] = {uptime : (cmd_uptime.toString())}
-	let cmd_lscpu = child_process.execSync("cat /proc/cpuinfo");
+	let cmd_lscpu = execSync("cat /proc/cpuinfo");
 	command_data.items[2] = {lscpu : cmd_lscpu.toString()}
-	let cmd_memoryInfo = child_process.execSync("cat /proc/meminfo");
+	let cmd_memoryInfo = execSync("cat /proc/meminfo");
 	command_data.items[3] = {meminfo : cmd_memoryInfo.toString()}
 	// .replace(/\n?\r\n/g, '<br />' )
 	console.log(JSON.stringify(command_data))
