@@ -1,4 +1,4 @@
-#docker push docker.io/chaituchowdary/app:arm64_latest docker.io/chaituchowdary/app:arm64_5.0
+#docker build -f arm64_Dockerfile -t docker.io/chaituchowdary/app:arm64_5.0 -t docker.io/chaituchowdary/app:arm64_latest .
 #docker push docker.io/chaituchowdary/app:arm64_latest
 #docker push docker.io/chaituchowdary/app:arm64_5.0
 
