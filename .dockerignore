@@ -1,4 +1,5 @@
 .gitignore
+files/
 code.sh
 docker.sh
 LICENSE

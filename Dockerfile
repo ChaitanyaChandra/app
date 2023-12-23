@@ -1,6 +1,5 @@
 FROM node:alpine
 WORKDIR '/app'
-COPY package.json .
-RUN npm install
 COPY . .
-CMD ["npm","start"]
+RUN npm install
+ENTRYPOINT ["/usr/local/bin/npm", "start"]
