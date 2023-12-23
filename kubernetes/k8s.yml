@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: server-one
-        image: chaituchowdary/app:latest
+        image: chaituchowdary/app:arm64_latest
         env:
         - name: MONGO_USER
           valueFrom:
