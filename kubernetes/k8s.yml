@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: server-one
-        image: dockerhub.io/chaituchowdary/app:latest
+        image: chaituchowdary/app:latest
         env:
         - name: MONGO_USER
           valueFrom:
