@@ -19,6 +19,13 @@ jobs:
         arch: [amd64, arm64]
 
     steps:
+
+    - name: get arch
+      run: |
+        uname -a
+        cat /etc/*release
+
+    
     - name: Checkout repository
       uses: actions/checkout@v2
 
