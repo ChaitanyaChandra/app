@@ -3,7 +3,7 @@
 
 db_user=chaitu
 db_pass=123Chaitu
-endpoint="mongodb+srv://$db_user:$db_pass@cluster0.wdtudby.mongodb.net/login-app-db retryWrites=true&w=majority"
+endpoint="mongodb+srv://$db_user:$db_pass@cluster0.wdtudby.mongodb.net/login-app-db?retryWrites=true&w=majority"
 echo $endpoint
 
 # delete all existing docker images
