@@ -43,7 +43,7 @@ app.get('/health', (req, res) => {
     var stat = {
     app: 'OK',
     mongo: mongoConnected,
-    host: `${execSync("hostname").toString().trim()}`
+    host: `${execSync("hostname").toString().trim()}`,
 	version: app_version,
 	environment: environment
     };
