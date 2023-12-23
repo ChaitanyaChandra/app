@@ -4,6 +4,8 @@
 db_user=chaitu
 db_pass=123Chaitu
 
+docker rm -f $(docker ps -a -q)
+
 docker run -d -t -i \
   -e MONGO_ENDPOINT="mongodb+srv://$db_user:$db_pass@cluster0.wdtudby.mongodb.net/login-app-db retryWrites=true&w=majority" \
   -e ENV='dev' \
