@@ -7,6 +7,7 @@ package.sh
 dryrun_linux.sh
 amd64_Dockerfile
 arm64_Dockerfile
-kubernetes
+kubernetes/
 dryrun_amd64_docker.sh
 dryrun_arm64_docker.sh
+Readme.md

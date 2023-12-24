@@ -5,11 +5,11 @@
 db_user=chaitu
 db_pass=123Chaitu
 
-# delete all existing docker containers
-docker rm -f $(docker ps -a -q)
-
-# delete all existing docker images
-docker rmi -f $(docker images -q)
+## delete all existing docker containers
+#docker rm -f $(docker ps -a -q)
+#
+## delete all existing docker images
+#docker rmi -f $(docker images -q)
 
 docker run -d -t -i \
   -e MONGO_ENDPOINT="mongodb+srv://$db_user:$db_pass@cluster0.wdtudby.mongodb.net/login-app-db?retryWrites=true&w=majority" \
