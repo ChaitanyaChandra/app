@@ -20,6 +20,6 @@
     
     `bash dryrun_arm64_docker.sh`
 
-> To run as a pod in kubernetes
+> To run as a pod in kubernetes(microk8s)
 
 `cd kubernetes/ ; bash dryrun_k8s.sh`
