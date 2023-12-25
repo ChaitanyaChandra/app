@@ -2,7 +2,7 @@
 
 > To run on linux
 
-* With nginx installed
+* With nodejs & npm installed
 
     `bash dryrun_linux.sh`
 
