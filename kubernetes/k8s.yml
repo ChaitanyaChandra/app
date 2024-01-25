@@ -1,3 +1,5 @@
+# for arm based processers
+---
 apiVersion: v1
 kind: Secret
 metadata:
