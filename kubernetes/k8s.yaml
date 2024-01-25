@@ -1,4 +1,4 @@
-# for AMD 64
+# for AMD based processers
 ---
 apiVersion: v1
 kind: Secret
