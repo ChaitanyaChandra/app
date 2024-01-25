@@ -4,7 +4,7 @@ metadata:
   name: mongo-credentials
 type: Opaque
 data:
-  MONGO_USER: Y2hhaXR1  # base64-encoded value of "chaitu"
+  MONGO_USER: Y2hhaXRhbnlhCg==  # base64-encoded value of "chaitu"
   MONGO_PASSWORD: MTIzQ2hhaXR1  # base64-encoded value of "123Chaitu"
 
 ---
@@ -38,7 +38,7 @@ spec:
               name: mongo-credentials
               key: MONGO_PASSWORD
         - name: MONGO_ENDPOINT
-          value: "mongodb+srv://$(MONGO_USER):$(MONGO_PASSWORD)@cluster0.wdtudby.mongodb.net/login-app-db?retryWrites=true&w=majority"
+          value: "mongodb+srv://$(MONGO_USER):$(MONGO_PASSWORD)@chaitanya.kj7ag4f.mongodb.net/login-app-db?retryWrites=true&w=majority"
         - name: ENV
           value: "dev"
         - name: APP_VERSION
