@@ -6,8 +6,8 @@ metadata:
   name: mongo-credentials
 type: Opaque
 data:
-  MONGO_USER: Y2hhaXRhbnlhCg==  # base64-encoded value of "chaitu"
-  MONGO_PASSWORD: MTIzQ2hhaXR1  # base64-encoded value of "123Chaitu"
+  MONGO_USER: Y2hhaXRhbnlhCg==
+  MONGO_PASSWORD: MTIzQ2hhaXR1
 
 ---
 
@@ -61,4 +61,4 @@ spec:
   - protocol: TCP
     port: 9000 # Exposes port 9000 externally
     targetPort: 8800
-  type: NodePort
+  type: LoadBalancer
