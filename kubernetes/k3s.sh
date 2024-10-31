@@ -8,7 +8,6 @@ sudo update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
 sudo ufw allow from any
 sudo ufw allow out to any
 sudo ufw allow in from any
-sudo reboot
 EOF
 
 clush  -w "master.durgasri.com,node[1-2].durgasri.com" "sudo snap stop microk8s"
@@ -52,4 +51,8 @@ k3sup join \
 --server-host=192.168.48.45 \
 --user=root
 
+clush  -w "master.durgasri.com,node[1-2].durgasri.com"  -b <<'EOF'
+/usr/local/bin/k3s-uninstall.sh
+/usr/local/bin/k3s-agent-uninstall.sh
+EOF
 
