@@ -4,7 +4,7 @@ metadata:
   name: ingress-wildcard-host
 spec:
   rules:
-    - host: "master.durgasri.com"
+    - host: "main.durgasri.com"
       http:
         paths:
           - pathType: Prefix

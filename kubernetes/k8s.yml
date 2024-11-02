@@ -68,5 +68,5 @@ spec:
   - protocol: TCP
     port: 9000 # Exposes port 9000 externally
     targetPort: 8800
-#  type: ClusterIP
-  type: LoadBalancer
+  type: ClusterIP
+#  type: LoadBalancer
