@@ -2,8 +2,8 @@
 #docker push docker.io/chaituchowdary/app:arm64_latest
 #docker push docker.io/chaituchowdary/app:arm64_5.0
 
-db_user=chaitu
-db_pass=123Chaitu
+db_user=
+db_pass=
 
 ## delete all existing docker containers
 #docker rm -f $(docker ps -a -q)
@@ -12,7 +12,7 @@ db_pass=123Chaitu
 #docker rmi -f $(docker images -q)
 
 docker run -d -t -i \
-  -e MONGO_ENDPOINT="mongodb+srv://$db_user:$db_pass@cluster0.wdtudby.mongodb.net/login-app-db?retryWrites=true&w=majority" \
+  -e MONGO_ENDPOINT="mongodb+srv://$db_user:$db_pass@chaitanya.kj7ag4f.mongodb.net/login-app-db?retryWrites=true&w=majority" \
   -e ENV='dev' \
   -e APP_VERSION='5.0' \
   -e PORT='8800' \
