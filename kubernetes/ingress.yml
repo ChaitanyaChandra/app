@@ -1,10 +1,31 @@
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-wildcard-host
+  name: spec-ingress
 spec:
   rules:
-    - host: "main.durgasri.com"
+    - host: "app.chaitu.net"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: spec-service
+                port:
+                  number: 9000
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: spec-health-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /health
+spec:
+  rules:
+    - host: "health.chaitu.net"
       http:
         paths:
           - pathType: Prefix

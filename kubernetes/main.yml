@@ -1,4 +1,4 @@
-# for AMD based processers
+# for arm based processers
 ---
 apiVersion: v1
 kind: Secret
@@ -8,7 +8,7 @@ type: Opaque
 data:
   MONGO_USER: Y2hhaXRhbnlhCg==
   MONGO_PASSWORD: MTIzQ2hhaXR1
-
+  
 ---
 
 apiVersion: apps/v1
@@ -16,7 +16,7 @@ kind: Deployment
 metadata:
   name: spec-deployment
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: spec
@@ -25,9 +25,16 @@ spec:
       labels:
         app: spec
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app: spec
+              topologyKey: "kubernetes.io/hostname"
       containers:
       - name: spec
-        image: chaituchowdary/app:latest
+        image: chaituchowdary/app:arm64_latest # chaituchowdary/app:latest for AMD
         env:
         - name: MONGO_USER
           valueFrom:
@@ -49,7 +56,6 @@ spec:
           value: "8800"
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -61,4 +67,5 @@ spec:
   - protocol: TCP
     port: 9000 # Exposes port 9000 externally
     targetPort: 8800
-  type: LoadBalancer
+  type: ClusterIP
+#  type: LoadBalancer
