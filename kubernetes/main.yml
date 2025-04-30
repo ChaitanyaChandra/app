@@ -25,13 +25,13 @@ spec:
       labels:
         app: spec
     spec:
-      affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchLabels:
-                  app: spec
-              topologyKey: "kubernetes.io/hostname"
+#      affinity:
+#        podAntiAffinity:
+#          requiredDuringSchedulingIgnoredDuringExecution:
+#            - labelSelector:
+#                matchLabels:
+#                  app: spec
+#              topologyKey: "kubernetes.io/hostname"
       containers:
       - name: spec
         image: chaituchowdary/app:arm64_latest # chaituchowdary/app:latest for AMD
