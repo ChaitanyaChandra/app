@@ -5,7 +5,7 @@ metadata:
   name: spec-ingress
 spec:
   rules:
-    - host: "app.chaitu.net"
+    - host: "app.durgasri.com"
       http:
         paths:
           - pathType: Prefix
@@ -25,7 +25,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /health
 spec:
   rules:
-    - host: "health.chaitu.net"
+    - host: "health.durgasri.com"
       http:
         paths:
           - pathType: Prefix
