@@ -3,7 +3,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: spec-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  # ingressClassName: nginx
   rules:
     - host: "app.durgasri.com"
       http:
@@ -24,6 +27,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /health
 spec:
+  # ingressClassName: nginx
   rules:
     - host: "health.durgasri.com"
       http:

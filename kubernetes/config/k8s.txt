@@ -1,0 +1,86 @@
+sudo apt update && sudo apt upgrade -y
+
+# Required kernel modules
+sudo modprobe overlay
+sudo modprobe br_netfilter
+
+# sysctl params
+sudo tee /etc/sysctl.d/k8s.conf <<EOF
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables  = 1
+net.ipv4.ip_forward                 = 1
+EOF
+sudo sysctl --system
+
+# Install containerd
+sudo apt install -y containerd
+
+# Generate default containerd config
+sudo mkdir -p /etc/containerd
+sudo containerd config default | sudo tee /etc/containerd/config.toml
+
+# Use systemd cgroup driver (important for kubelet compatibility)
+sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/config.toml
+
+sudo systemctl restart containerd
+sudo systemctl enable containerd
+
+# Disable swap (K8s doesn't support swap)
+sudo swapoff -a
+sudo sed -i '/ swap / s/^/#/' /etc/fstab
+
+
+sudo apt update
+sudo apt install -y apt-transport-https ca-certificates curl
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo tee /etc/apt/trusted.gpg.d/kubernetes.asc
+echo "deb https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt update
+
+sudo apt install -y kubelet kubeadm kubectl
+sudo systemctl enable kubelet
+sudo systemctl start kubelet
+
+sudo kubeadm init --apiserver-bind-port=16443 --apiserver-advertise-address=0.0.0.0 --service-dns-domain="svc.durgasri.in"
+
+kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+
+kubeadm token create --print-join-command
+
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.14.9/config/manifests/metallb-native.yaml
+
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: default-pool
+  namespace: metallb-system
+spec:
+  addresses:
+  - 192.168.1.240-192.168.1.250  # Set your available IP range
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: default-adv
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+  - default-pool
+
+
+
+# ingress
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml -n ingress-nginx
+hostPort
+
+sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 192.168.1.240:80
+sudo iptables -t nat -A PREROUTING -p tcp --dport 443 -j DNAT --to-destination 192.168.1.240:443
+sudo iptables -t nat -A POSTROUTING -j MASQUERADE
+
+sudo iptables -t nat -L PREROUTING --line-numbers
+
+# force delete ns
+for ns in $(kubectl get ns --no-headers | awk '$2=="Terminating" {print $1}'); do
+  echo "Force deleting namespace: $ns"
+  kubectl get namespace "$ns" -o json \
+    | jq '.spec.finalizers = []' \
+    | kubectl replace --raw "/api/v1/namespaces/$ns/finalize" -f -
+done
