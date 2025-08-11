@@ -69,8 +69,14 @@ spec:
 
 # ingress
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml -n ingress-nginx
-hostPort
-nodePort
+
+kubectl patch deployment ingress-nginx-controller -n ingress-nginx --type='json' -p '[
+  {"op":"replace","path":"/spec/template/spec/nodeName","value":"cp"},
+  {"op":"replace","path":"/spec/template/spec/containers/0/ports/0","value":{"containerPort":80,"hostPort":80,"name":"http","protocol":"TCP"}},
+  {"op":"replace","path":"/spec/template/spec/containers/0/ports/1","value":{"containerPort":443,"hostPort":443,"name":"https","protocol":"TCP"}}
+]'
+
+
 
 sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 192.168.1.240:80
 sudo iptables -t nat -A PREROUTING -p tcp --dport 443 -j DNAT --to-destination 192.168.1.240:443
