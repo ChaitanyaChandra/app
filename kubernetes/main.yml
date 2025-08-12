@@ -34,7 +34,7 @@ spec:
 #              topologyKey: "kubernetes.io/hostname"
       containers:
       - name: spec
-        image: chaituchowdary/app:arm64_latest # chaituchowdary/app:latest for AMD
+        image: chaitanyachandra/app:latest
         env:
         - name: MONGO_USER
           valueFrom:
