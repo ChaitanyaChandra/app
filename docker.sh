@@ -1,9 +1,5 @@
-#docker build -f arm64_Dockerfile -t docker.io/chaituchowdary/app:arm64_5.0 -t docker.io/chaituchowdary/app:arm64_latest .
-#docker push docker.io/chaituchowdary/app:arm64_latest
-#docker push docker.io/chaituchowdary/app:arm64_5.0
-
-db_user="chaitanya"
-db_pass="123Chaitu"
+db_user=
+db_pass=
 
 ## delete all existing docker containers
 #docker rm -f $(docker ps -a -q)

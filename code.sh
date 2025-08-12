@@ -22,10 +22,10 @@ git clone https://github.com/ChaitanyaChandra/app.git
 cd app/
 cat package.sh | bash
 
-db_user=chaitu
-db_pass=123Chaitu
+db_user=
+db_pass=
 
-echo Environment="MONGO_ENDPOINT=mongodb+srv://$db_user:$db_pass@cluster0.wdtudby.mongodb.net/login-app-db?retryWrites=true&w=majority" >> files/spec.service
+echo Environment="MONGO_ENDPOINT=mongodb+srv://$db_user:$db_pass@chaitanya.kj7ag4f.mongodb.net/login-app-db?retryWrites=true&w=majority" >> files/spec.service
 cp files/spec.service /etc/systemd/system/
 systemctl start spec
 
