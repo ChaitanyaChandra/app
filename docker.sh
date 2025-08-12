@@ -2,8 +2,8 @@
 #docker push docker.io/chaituchowdary/app:arm64_latest
 #docker push docker.io/chaituchowdary/app:arm64_5.0
 
-db_user=
-db_pass=
+db_user="chaitanya"
+db_pass="123Chaitu"
 
 ## delete all existing docker containers
 #docker rm -f $(docker ps -a -q)
@@ -18,6 +18,6 @@ docker run -d -t -i \
   -e PORT='8800' \
   -p 9000:8800 \
   -h ServerOne \
-  --name server-one chaituchowdary/app:arm64_latest
+  --name server-one chaitanyachandra/app:latest
 
 echo "docker exec -it server-one sh"
