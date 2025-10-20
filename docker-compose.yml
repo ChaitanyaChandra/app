@@ -20,7 +20,7 @@ services:
     image: chaitanyachandra/app:amd_latest
     container_name: webapp
     ports:
-      - "8000:8080"   # map external 8080 to container's 8000
+      - "8000:8080"   # map external 8000 to container's 8080
     environment:
       DB_Host: mysql
       DB_User: "${DB_USER}"
