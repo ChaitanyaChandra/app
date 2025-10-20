@@ -8,7 +8,7 @@ services:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
-      MYSQL_DATABASE: mydb
+      MYSQL_DATABASE: "${DB_DATABASE}"
       MYSQL_USER: "${DB_USER}"
       MYSQL_PASSWORD: "${DB_PASSWORD}"
     volumes:
@@ -24,6 +24,7 @@ services:
     environment:
       DB_Host: "${DB_HOST}"
       DB_User: "${DB_USER}"
+      DB_Database: "${DB_DATABASE}"
       DB_Password: "${DB_PASSWORD}"
     depends_on:
       - mysql
