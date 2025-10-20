@@ -105,7 +105,7 @@ spec:
             - name: ENVIRONMENT
               value: "dev"
             - name: APP_VERSION
-              value: "2.0 - latest"
+              value: "3.0 - latest"
             - name: POD_NAME
               valueFrom:
                 fieldRef:
