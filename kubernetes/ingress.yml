@@ -17,7 +17,7 @@ spec:
               service:
                 name: webapp
                 port:
-                  number: 8080
+                  number: 8000
 
 ---
 apiVersion: networking.k8s.io/v1
@@ -38,4 +38,4 @@ spec:
               service:
                 name: webapp
                 port:
-                  number: 8080
+                  number: 8000
