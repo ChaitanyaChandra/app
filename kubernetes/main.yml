@@ -23,7 +23,7 @@ spec:
   selector:
     name: webapp
   ports:
-  - port: 8080
+  - port: 8000
     targetPort: 8080
 
 ---
@@ -97,7 +97,7 @@ spec:
         - name: webapp
           image: chaitanyachandra/app:latest
           ports:
-            - containerPort: 8000
+            - containerPort: 8080
           envFrom:
             - secretRef:
                 name: app-secret
