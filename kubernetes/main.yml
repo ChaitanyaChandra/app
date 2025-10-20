@@ -1,71 +1,110 @@
-# for arm based processers
 ---
 apiVersion: v1
 kind: Secret
 metadata:
-  name: mongo-credentials
-type: Opaque
+  annotations:
+    owner: Chaitanya Chandra
+    email: ChandraChaitanya@icloud.com
+  name: app-secret
 data:
-  MONGO_USER: Y2hhaXRhbnlhCg==
-  MONGO_PASSWORD: MTIzQ2hhaXR1
-  
----
+    DB_Host: bXlzcWw=
+    DB_User: cm9vdA==
+    DB_Password: cGFzc3dvcmQ==
 
-apiVersion: apps/v1
-kind: Deployment
+---
+kind: Service
+apiVersion: v1
 metadata:
-  name: spec-deployment
+  annotations:
+    owner: Chaitanya Chandra
+    email: ChandraChaitanya@icloud.com
+  name: webapp-service
 spec:
-  replicas: 3
   selector:
-    matchLabels:
-      app: spec
-  template:
-    metadata:
-      labels:
-        app: spec
-    spec:
-#      affinity:
-#        podAntiAffinity:
-#          requiredDuringSchedulingIgnoredDuringExecution:
-#            - labelSelector:
-#                matchLabels:
-#                  app: spec
-#              topologyKey: "kubernetes.io/hostname"
-      containers:
-      - name: spec
-        image: chaitanyachandra/app:latest
-        env:
-        - name: MONGO_USER
-          valueFrom:
-            secretKeyRef:
-              name: mongo-credentials
-              key: MONGO_USER
-        - name: MONGO_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mongo-credentials
-              key: MONGO_PASSWORD
-        - name: MONGO_ENDPOINT
-          value: "mongodb+srv://$(MONGO_USER):$(MONGO_PASSWORD)@chaitanya.kj7ag4f.mongodb.net/login-app-db?retryWrites=true&w=majority"
-        - name: ENV
-          value: "dev"
-        - name: APP_VERSION
-          value: "5.0"
-        - name: PORT
-          value: "8800"
+    name: webapp
+  ports:
+  - port: 8080
+    targetPort: 8080
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: spec-service
+  name: mysql
 spec:
+  clusterIP: None   # This makes it headless
   selector:
-    app: spec
+    name: mysql
   ports:
-  - protocol: TCP
-    port: 9000 # Exposes port 9000 externally
-    targetPort: 8800
-  type: ClusterIP
-#  type: LoadBalancer
+    - port: 3306
+      targetPort: 3306
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  annotations:
+    owner: Chaitanya Chandra
+    email: ChandraChaitanya@icloud.com
+  labels:
+    name: mysql
+  name: mysql-statefulset
+spec:
+  serviceName: "mysql"
+  replicas: 1
+  selector:
+    matchLabels:
+      name: mysql
+  template:
+    metadata:
+      labels:
+        name: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:latest
+          ports:
+            - containerPort: 3306
+              protocol: TCP
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: DB_Password
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    owner: Chaitanya Chandra
+    email: ChandraChaitanya@icloud.com
+  labels:
+    name: webapp
+  name: webapp-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: webapp
+  template:
+    metadata:
+      labels:
+        name: webapp
+    spec:
+      containers:
+        - name: webapp
+          image: chaitanyachandra/app:latest
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - secretRef:
+                name: app-secret
+          # env:
+          #   - name: DB_Host
+          #     value: mysql
+          #   - name: DB_User
+          #     value: root
+          #   - name: DB_Password
+          #     value: paswrd

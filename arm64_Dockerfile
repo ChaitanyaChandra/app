@@ -1,5 +1,0 @@
-FROM arm64v8/node:latest
-WORKDIR '/home/node'
-COPY . .
-RUN npm install
-CMD ["npm","start"]

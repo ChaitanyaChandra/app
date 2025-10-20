@@ -1,2 +1,2 @@
-### nodejs 
-* basic nodejs app with login using mongodb
+### python application  
+* to execute `docker-compose up -d`
