@@ -22,7 +22,7 @@ services:
     ports:
       - "8000:8080"   # map external 8000 to container's 8080
     environment:
-      DB_Host: mysql
+      DB_Host: "${DB_HOST}"
       DB_User: "${DB_USER}"
       DB_Password: "${DB_PASSWORD}"
     depends_on:
