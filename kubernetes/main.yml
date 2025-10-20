@@ -9,7 +9,7 @@ metadata:
 data:
     DB_Host: bXlzcWw=
     DB_User: cm9vdA==
-    DB_Password: cGFzc3dvcmQ==
+    DB_Password: cGFzc3dvcmQ=
 
 ---
 kind: Service
