@@ -6,3 +6,5 @@ kubernetes/
 Readme.md
 Dockerfile
 docker-compose.yml
+.env
+.docker-push

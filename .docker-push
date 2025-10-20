@@ -1,0 +1,23 @@
+# for AMD
+docker build -t docker.io/chaitanyachandra/app:amd_2.0  -t docker.io/chaitanyachandra/app:amd_latest .
+
+docker push docker.io/chaitanyachandra/app:amd_2.0
+docker push docker.io/chaitanyachandra/app:amd_latest
+
+# for ARM
+docker build -t docker.io/chaitanyachandra/app:arm_2.0  -t docker.io/chaitanyachandra/app:arm_latest .
+
+docker push docker.io/chaitanyachandra/app:arm_2.0
+docker push docker.io/chaitanyachandra/app:arm_latest
+
+# multi tag arch
+docker manifest create docker.io/chaitanyachandra/app:2.0 \
+  --amend docker.io/chaitanyachandra/app:arm_2.0 \
+  --amend docker.io/chaitanyachandra/app:amd_2.0
+
+docker manifest push docker.io/chaitanyachandra/app:2.0
+
+docker buildx build --platform linux/amd64,linux/arm64 \
+  -t docker.io/chaitanyachandra/app:2.0 \
+  -t docker.io/chaitanyachandra/app:latest \
+  --push .
