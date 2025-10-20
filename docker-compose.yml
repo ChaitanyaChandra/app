@@ -17,7 +17,7 @@ services:
       - app-network
 
   webapp:
-    image: chaitanyachandra/app:latest
+    image: chaitanyachandra/app:amd_latest
     container_name: webapp
     ports:
       - "8000:8080"   # map external 8080 to container's 8000
