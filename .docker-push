@@ -3,25 +3,32 @@ docker run -it --rm -p 8080:8080 chaitanyachandra/app:amd_latest
 docker run -it --rm -p 8080:8080 chaitanyachandra/app:amd_latest sh
 
 # for AMD
-docker build -t docker.io/chaitanyachandra/app:amd_2.0  -t docker.io/chaitanyachandra/app:amd_latest .
+docker build -t docker.io/chaitanyachandra/app:amd_3.0  -t docker.io/chaitanyachandra/app:amd_latest .
 
-docker push docker.io/chaitanyachandra/app:amd_2.0
+docker push docker.io/chaitanyachandra/app:amd_3.0
 docker push docker.io/chaitanyachandra/app:amd_latest
 
 # for ARM
-docker build -t docker.io/chaitanyachandra/app:arm_2.0  -t docker.io/chaitanyachandra/app:arm_latest .
+docker build -t docker.io/chaitanyachandra/app:arm_3.0  -t docker.io/chaitanyachandra/app:arm_latest .
 
-docker push docker.io/chaitanyachandra/app:arm_2.0
+docker push docker.io/chaitanyachandra/app:arm_3.0
 docker push docker.io/chaitanyachandra/app:arm_latest
 
-# multi tag arch
-docker manifest create docker.io/chaitanyachandra/app:2.0 \
-  --amend docker.io/chaitanyachandra/app:arm_2.0 \
-  --amend docker.io/chaitanyachandra/app:amd_2.0
+# multi tag arch for version
+docker manifest create docker.io/chaitanyachandra/app:3.0 \
+  --amend docker.io/chaitanyachandra/app:arm_3.0 \
+  --amend docker.io/chaitanyachandra/app:amd_3.0
 
-docker manifest push docker.io/chaitanyachandra/app:2.0
+docker manifest push docker.io/chaitanyachandra/app:3.0
+
+# multi tag arch for latest tag
+docker manifest create docker.io/chaitanyachandra/app:latest \
+  --amend docker.io/chaitanyachandra/app:arm_latest \
+  --amend docker.io/chaitanyachandra/app:amd_latest
+
+docker manifest push docker.io/chaitanyachandra/app:latest
 
 # docker buildx build --platform linux/amd64,linux/arm64 \
-#   -t docker.io/chaitanyachandra/app:2.0 \
+#   -t docker.io/chaitanyachandra/app:3.0 \
 #   -t docker.io/chaitanyachandra/app:latest \
 #   --push .
