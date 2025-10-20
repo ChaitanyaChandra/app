@@ -43,7 +43,6 @@ def get_system_info():
         "total_memory": get_total_memory(),
         "uptime": get_uptime(),
         "developer_name": get_env("DEVELOPER_NAME"),
-        "extra_k8s_component": get_env("EXTRA_K8S_COMPONENT"),
         "version": get_env("APP_VERSION"),
         "env": get_env("ENVIRONMENT"),
         "nodename": get_env("NODE_NAME"),
