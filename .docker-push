@@ -1,5 +1,6 @@
 # to test 
 docker run -it --rm -p 8080:8080 chaitanyachandra/app:amd_latest
+docker run -it --rm -p 8080:8080 chaitanyachandra/app:amd_latest sh
 
 # for AMD
 docker build -t docker.io/chaitanyachandra/app:amd_2.0  -t docker.io/chaitanyachandra/app:amd_latest .
