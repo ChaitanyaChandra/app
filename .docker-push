@@ -21,7 +21,7 @@ docker manifest create docker.io/chaitanyachandra/app:2.0 \
 
 docker manifest push docker.io/chaitanyachandra/app:2.0
 
-docker buildx build --platform linux/amd64,linux/arm64 \
-  -t docker.io/chaitanyachandra/app:2.0 \
-  -t docker.io/chaitanyachandra/app:latest \
-  --push .
+# docker buildx build --platform linux/amd64,linux/arm64 \
+#   -t docker.io/chaitanyachandra/app:2.0 \
+#   -t docker.io/chaitanyachandra/app:latest \
+#   --push .
