@@ -42,7 +42,7 @@ def get_system_info():
         "total_cpu": get_total_cpu(),
         "total_memory": get_total_memory(),
         "uptime": get_uptime(),
-        "developer_name": get_env("DEVELOPER_NAME"),
+        "developer_name": "Chaitanya Chandra",
         "version": get_env("APP_VERSION"),
         "env": get_env("ENVIRONMENT"),
         "nodename": get_env("NODE_NAME"),
