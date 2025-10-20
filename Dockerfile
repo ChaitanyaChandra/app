@@ -7,7 +7,7 @@ RUN pip install --prefix=/install -r requirements.txt
 COPY . .
 
 # Stage 2: Runtime
-FROM python:3.12-slim
+FROM python:3.12-alpine
 WORKDIR /app
 COPY --from=builder /install /usr/local
 COPY --from=builder /app /app
