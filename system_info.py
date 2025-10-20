@@ -122,6 +122,10 @@ def get_system_info():
         "environment": get_env("ENVIRONMENT"),
         "nodename": get_env("NODE_NAME"),
         "podname": get_env("POD_NAME"),
+        "pod_namespace": get_env("POD_NAMESPACE"),
+        "pod_ip": get_env("POD_IP"),
+        "host_ip": get_env("HOST_IP"),
+        "service_account": get_env("SERVICE_ACCOUNT"),        
         "developer_name": "Chaitanya Chandra",
         "developer_email": "ChandraChaitanya@icloud.com",
     }

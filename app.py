@@ -36,5 +36,11 @@ def health():
     info = get_system_info()
     return jsonify(info)
 
+@app.route("/env")
+def env():
+    # Convert all environment variables to a dictionary
+    env_vars = dict(os.environ)
+    return jsonify(env_vars)
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)

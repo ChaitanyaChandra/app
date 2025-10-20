@@ -6,7 +6,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  # ingressClassName: nginx
+  ingressClassName: nginx
   rules:
     - host: "app.durgasri.com"
       http:
@@ -15,7 +15,7 @@ spec:
             path: "/"
             backend:
               service:
-                name: webapp
+                name: webapp-service
                 port:
                   number: 8000
 
@@ -27,7 +27,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /health
 spec:
-  # ingressClassName: nginx
+  ingressClassName: nginx
   rules:
     - host: "health.durgasri.com"
       http:
@@ -36,6 +36,6 @@ spec:
             path: "/"
             backend:
               service:
-                name: webapp
+                name: webapp-service
                 port:
                   number: 8000

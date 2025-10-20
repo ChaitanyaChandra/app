@@ -95,14 +95,14 @@ spec:
     spec:
       containers:
         - name: webapp
-          image: chaitanyachandra/app:latest
+          image: chaitanyachandra/app:3.0
           ports:
             - containerPort: 8080
           envFrom:
             - secretRef:
                 name: app-secret
           env:
-            - name: ENV
+            - name: ENVIRONMENT
               value: "dev"
             - name: APP_VERSION
               value: "2.0 - latest"
