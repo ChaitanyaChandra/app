@@ -95,7 +95,7 @@ spec:
     spec:
       containers:
         - name: webapp
-          image: chaitanyachandra/app:3.0
+          image: chaitanyachandra/app:latest
           ports:
             - containerPort: 8080
           envFrom:
