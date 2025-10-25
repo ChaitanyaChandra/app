@@ -1,9 +1,9 @@
 ### python application  
 * to execute
   ```shell
-git clone https://github.com/ChaitanyaChandra/app.git 
-cd app/ 
-docker-compose up -d
+  git clone https://github.com/ChaitanyaChandra/app.git 
+  cd app/ 
+  docker-compose up -d
   ```
 * application paths
   * `/` --> to check the db connection
