@@ -10,6 +10,7 @@ data:
     DB_Host: bXlzcWw=
     DB_User: cm9vdA==
     DB_Password: cGFzc3dvcmQ=
+    DB_Database: bXlkYg==
 
 ---
 kind: Service
@@ -62,11 +63,16 @@ spec:
     spec:
       containers:
         - name: mysql
-          image: mysql:latest
+          image: mysql:9
           ports:
             - containerPort: 3306
               protocol: TCP
           env:
+            - name: MYSQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: DB_Database
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -96,6 +102,7 @@ spec:
       containers:
         - name: webapp
           image: chaitanyachandra/app:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           envFrom:
